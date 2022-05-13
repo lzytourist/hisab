@@ -61,12 +61,13 @@ export default {
 
         const loading = ref(false);
 
-        const expense = reactive({
+        const initialExpense = {
             title: '',
             details: '',
             amount: 0,
             method_id: 0
-        });
+        };
+        const expense = reactive(initialExpense);
 
         const addExpense = async () => {
             loading.value = true;
@@ -77,6 +78,10 @@ export default {
 
                 closeModal();
                 clearMessages();
+
+                for (const [key, value] in Object.entries(initialExpense)) {
+                    expense[key] = value;
+                }
             }
 
             loading.value = false;

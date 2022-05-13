@@ -43,7 +43,7 @@ export default function useAuth() {
                 message.value.error = false;
 
                 setTimeout(() => {
-                    window.open('http://127.0.0.1:8000/dashboard', '_self');
+                    window.open('/dashboard', '_self');
                 }, 1000);
             } else {
                 message.value.error = true;

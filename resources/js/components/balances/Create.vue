@@ -61,12 +61,13 @@ export default {
 
         const loading = ref(false);
 
-        const balance = reactive({
+        const initialBalance = {
             title: '',
             details: '',
             amount: 0,
             method_id: 0
-        });
+        };
+        const balance = reactive(initialBalance);
 
         const addBalance = async () => {
             loading.value = true;
@@ -77,6 +78,10 @@ export default {
 
                 closeModal();
                 clearMessages();
+
+                for (const [key, value] in Object.entries(initialBalance)) {
+                    balance[key] = value;
+                }
             }
 
             loading.value = false;

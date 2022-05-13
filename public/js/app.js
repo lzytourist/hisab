@@ -20197,6 +20197,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Message */ "./resources/js/components/Message.vue");
 
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -20230,16 +20242,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         closeModal = _useModal.closeModal;
 
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
-    var balance = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)({
+    var initialBalance = {
       title: '',
       details: '',
       amount: 0,
       method_id: 0
-    });
+    };
+    var balance = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)(initialBalance);
 
     var addBalance = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var success;
+        var success, _ref2, _ref3, key, value;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -20252,7 +20266,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 success = _context.sent;
 
                 if (!success) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
 
@@ -20263,10 +20277,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 closeModal();
                 clearMessages();
 
-              case 9:
-                loading.value = false;
+                for (_ref2 in Object.entries(initialBalance)) {
+                  _ref3 = _slicedToArray(_ref2, 2);
+                  key = _ref3[0];
+                  value = _ref3[1];
+                  balance[key] = value;
+                }
 
               case 10:
+                loading.value = false;
+
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -20568,6 +20589,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Message */ "./resources/js/components/Message.vue");
 
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -20601,16 +20634,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         closeModal = _useModal.closeModal;
 
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
-    var expense = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)({
+    var initialExpense = {
       title: '',
       details: '',
       amount: 0,
       method_id: 0
-    });
+    };
+    var expense = (0,vue__WEBPACK_IMPORTED_MODULE_4__.reactive)(initialExpense);
 
     var addExpense = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var success;
+        var success, _ref2, _ref3, key, value;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -20623,7 +20658,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 success = _context.sent;
 
                 if (!success) {
-                  _context.next = 9;
+                  _context.next = 10;
                   break;
                 }
 
@@ -20634,10 +20669,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 closeModal();
                 clearMessages();
 
-              case 9:
-                loading.value = false;
+                for (_ref2 in Object.entries(initialExpense)) {
+                  _ref3 = _slicedToArray(_ref2, 2);
+                  key = _ref3[0];
+                  value = _ref3[1];
+                  expense[key] = value;
+                }
 
               case 10:
+                loading.value = false;
+
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -23327,7 +23369,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.withCredentials = true;
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-window.axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
+window.axios.defaults.baseURL = 'http://hisab.local/api';
 
 /***/ }),
 
@@ -23445,7 +23487,7 @@ function useAuth() {
                 localStorage.setItem('token', response.data.data.token);
                 message.value.error = false;
                 setTimeout(function () {
-                  window.open('http://127.0.0.1:8000/dashboard', '_self');
+                  window.open('/dashboard', '_self');
                 }, 1000);
               } else {
                 message.value.error = true;
