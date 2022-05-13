@@ -93,5 +93,6 @@ export default {
 <style scoped>
 .router-link-active {
     background-color: hsl(var(--p));
+    color: hsl(var(--pc));
 }
 </style>

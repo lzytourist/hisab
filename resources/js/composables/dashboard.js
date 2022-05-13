@@ -21,6 +21,10 @@ const stats = ref({
             period: 'December to January'
         }
     },
+    account: {
+        current: 0,
+        total: 0
+    }
 });
 
 export default function useDashboard() {

@@ -57,6 +57,10 @@ class DashboardController extends Controller
                     'period' => 'From ' . $request->user()->registrationMonth() . ' to now',
                 ]
             ],
+            'account' => [
+                'current' => 'BDT ' . number_format($currentMonthBalance - $currentMonthExpense, 2),
+                'total' => 'BDT ' . number_format($totalBalance - $totalExpense, 2)
+            ]
         ]);
     }
 }
