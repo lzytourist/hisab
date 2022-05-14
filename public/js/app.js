@@ -23369,7 +23369,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.withCredentials = true;
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-window.axios.defaults.baseURL = 'http://hisab.local/api';
+window.axios.defaults.baseURL = '/api';
 
 /***/ }),
 
@@ -23543,8 +23543,8 @@ function useAuth() {
                 localStorage.setItem('token', response.data.data.token);
                 message.value.error = false;
                 setTimeout(function () {
-                  window.open('http://127.0.0.1:8000/dashboard', '_self');
-                }, 1500);
+                  window.open('/dashboard', '_self');
+                }, 300);
               } else {
                 message.value.error = true;
               }
