@@ -6,6 +6,7 @@ import NoteIndex from "../components/notes/NoteIndex";
 import TaskIndex from "../components/tasks/TaskIndex";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
+import Loans from "../components/loans/Loans";
 
 const routes = [
     {
@@ -43,6 +44,11 @@ const routes = [
         name: "register",
         component: Register
     },
+    {
+        path: '/loans',
+        name: 'loans.index',
+        component: Loans
+    }
 ];
 
 export default createRouter({

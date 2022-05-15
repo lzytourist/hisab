@@ -23,8 +23,8 @@
                             <li v-for="(item, idx) in navigation" :key="idx">
                                 <router-link :to="{name: item.link}">{{ item.name }}</router-link>
                             </li>
-                            <li class="dropdown dropdown-end">
-                                <label tabindex="0" class="">Account</label>
+                            <li class="dropdown">
+                                <span tabindex="0" class="">Account</span>
                                 <ul tabindex="0" class="dropdown-content menu shadow bg-base-100 rounded-box w-52">
                                     <li><a>{{ user?.name }}</a></li>
                                     <li><a @click.prevent="logout">Logout</a></li>
@@ -77,6 +77,10 @@ export default {
                 name: 'Tasks',
                 link: 'tasks.index'
             },
+            {
+                name: 'Loans',
+                link: 'loans.index'
+            }
         ];
 
         const {logout, user} = useAuth();

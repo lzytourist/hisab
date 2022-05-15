@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BalanceController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ExpenseController;
+use App\Http\Controllers\Api\LoanController;
 use App\Http\Controllers\Api\MethodController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('balances', BalanceController::class);
     Route::apiResource('expenses', ExpenseController::class);
     Route::apiResource('methods', MethodController::class);
+    Route::apiResource('loans', LoanController::class);
 
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('stats', [DashboardController::class, 'stats']);

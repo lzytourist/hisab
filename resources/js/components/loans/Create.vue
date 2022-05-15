@@ -1,40 +1,35 @@
 <template>
-    <div class="modal modal-bottom sm:modal-middle" :class="{'modal-open': modal.edit}">
+    <div class="modal modal-bottom sm:modal-middle" :class="{'modal-open': modal.create}">
         <div class="modal-box bg-base-200 text-base-content">
-            <h3 class="font-bold text-lg">Edit Balance</h3>
+            <h3 class="font-bold text-lg">Add Loan</h3>
             <a @click.prevent="closeModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</a>
 
             <Errors :errors="errors"/>
             <Message :message="message"/>
 
-            <form method="post" @submit.prevent="editBalance">
+            <form method="post" @submit.prevent="addLoan">
                 <div class="mb-4 form-group">
                     <label for="title" class="label">Title <span class="text-red-500">*</span></label>
-                    <input type="text" name="title" v-model="balance.title" id="title" class="input w-full"
+                    <input type="text" name="title" v-model="loan.title" id="title" class="input w-full"
                            placeholder="Enter title">
                 </div>
                 <div class="mb-4 form-group">
-                    <label for="details" class="label">Details <span class="text-red-500">*</span></label>
-                    <textarea class="textarea w-full" placeholder="Details" v-model="balance.details"></textarea>
-                </div>
-                <div class="mb-4 form-group">
                     <label for="amount" class="label">Amount <span class="text-red-500">*</span></label>
-                    <input type="number" name="amount" v-model="balance.amount" id="amount" class="input w-full"
+                    <input type="number" name="amount" v-model="loan.amount" id="amount" class="input w-full"
                            placeholder="Enter amount">
                 </div>
                 <div class="mb-4 form-group">
-                    <label for="method" class="label">Method <span class="text-red-500">*</span></label>
-                    <select id="method" class="select w-full" v-model="balance.method_id">
-                        <option disabled value="0">Select Method</option>
-                        <option
-                            v-for="(method, idx) in methods"
-                            :key="idx"
-                            :value="method.id"
-                            :selected="method.id === balance.method_id"
-                        >
-                            {{ method.name }}
-                        </option>
+                    <label for="type" class="label">Loan Given/Taken <span class="text-red-500">*</span></label>
+                    <select id="type" class="select w-full" v-model="loan.type">
+                        <option value="Given">Given</option>
+                        <option value="Taken">Taken</option>
                     </select>
+                </div>
+                <div class="mb-4 form-group">
+                    <label class="label cursor-pointer">
+                        <span class="label-text">Returned</span>
+                        <input type="checkbox" class="toggle toggle-primary" v-model="loan.returned" />
+                    </label>
                 </div>
                 <div class="mt-4">
                     <input type="submit" value="save" class="btn btn-outline btn-primary btn-block" :class="{loading: loading}">
@@ -45,32 +40,44 @@
 </template>
 
 <script>
-import useBalance from "../../composables/balance";
+import useLoan from "../../composables/loan";
 import useMethod from "../../composables/method";
 import useModal from "../../composables/modal";
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 import Errors from "../Errors";
 import Message from "../Message";
 
 export default {
-    name: "Edit",
+    name: "Create",
     components: {Message, Errors},
     setup() {
-        const {errors, message, balance, updateBalance, getBalances, clearMessages} = useBalance();
+        const {errors, message, saveLoan, getLoans, clearMessages} = useLoan();
         const {methods} = useMethod();
         const {modal, openCreateModal, closeModal} = useModal();
 
         const loading = ref(false);
 
-        const editBalance = async () => {
+        const initialLoan = {
+            title: '',
+            amount: 0,
+            type: 'Given',
+            returned: false
+        };
+        const loan = reactive(initialLoan);
+
+        const addLoan = async () => {
             loading.value = true;
 
-            const success = await updateBalance();
+            const success = await saveLoan(loan);
             if (success) {
-                await getBalances();
+                await getLoans(1);
 
                 closeModal();
                 clearMessages();
+
+                for (const [key, value] in Object.entries(initialLoan)) {
+                    loan[key] = value;
+                }
             }
 
             loading.value = false;
@@ -79,13 +86,13 @@ export default {
         return {
             errors,
             message,
-            balance,
+            loan,
             methods,
             loading,
             modal,
             openCreateModal,
             closeModal,
-            editBalance,
+            addLoan,
         };
     }
 }

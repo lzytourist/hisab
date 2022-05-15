@@ -1,6 +1,6 @@
 <template>
     <div class="modal modal-bottom sm:modal-middle" :class="{'modal-open': modal.edit}">
-        <div class="modal-box bg-white">
+        <div class="modal-box bg-base-200 text-base-content">
             <h3 class="font-bold text-lg">Edit Expense</h3>
             <a @click.prevent="closeModal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</a>
 
